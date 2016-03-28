@@ -1,19 +1,1 @@
 # wehelp490.github.io
-
-node_modules
-.idea
-.DS_Store
-
-# ignore all files in any directory named `secret`
-**/secret/*
-
-# except files ending in `.template` or `.md`
-!**/secret/*.template
-!**/secret/*.md
-
-# ignore .vagrant directory
-.vagrant
-
-# and the VSCode typings directory
-typings
-Status API Training Shop Blog About Pricing
