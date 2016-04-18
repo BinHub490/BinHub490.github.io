@@ -73,50 +73,42 @@
         <div class="header-content">
             <div class="header-content-inner">
                 <h1>BinHub</h1>
-                <hr>
+           
                 <p>Take the frustration out of <b>searching</b> and focus on <b>donating</b> with BinHub</p>
-
             </div>
 
-             <div class="container">
-            <div class="row">
-               <div id="custom-search-input">
-                            <div  style="width:400px; margin:0 auto;" class="input-group col-md-6">
-                                <input type="text" class="  search-query form-control" placeholder="Enter your Zipcode" />
-                                <span class="input-group-btn">
-                                    <a href="mapPage.html">
-                                        <button class="btn btn-danger" type="button">
-                                            <span class=" glyphicon glyphicon-search"></span>
-                                        </button>
-                                    </a>
+            <form>
+  
+  <fieldset class="form-group">
+    <input type="zipcode" class="form-control" id="zipcode" placeholder="Enter a Zip Code">
+  </fieldset>
+  <fieldset class="form-group">
+    <label for="type">Donation Type (Optional)</label>
+    <select multiple class="form-control" id="type">
+      <option>Clothes</option>
+      <option>Books</option>
+      <option>Electronics</option>
+      <option>Household Items</option>
+    </select>
+  </fieldset>
+  <fieldset class="form-group">
+    <label for="organization">Choose Donation Organization (Optional)</label>
+    <select multiple class="form-control" id="organization">
+      <option>Big Brothers Big Sisters</option>
+      <option>Goodwill</option>
+      <option>Northwest Center</option>
+      <option>The Salvation Army</option>
+      <option>SightConnection</option>
+       <option>TexGreen Inc.</option>
+      <option>USAgain</option>
+      <option>Value Village</option>
+    </select>
+  </fieldset>
+  
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
 
-                                </span>
-                            </div>
-                        </div>
-
-                        <br>
-
-                <div style="width:400px; margin:0 auto;" class="input-group col-md-6">
-                <select class="form-control">
-                    <option value="one">Clothes</option>
-                    <option value="two">Books </option>
-                    <option value="three">Electronics</option>
-                    <option value="four">Household Items</option>
-                    
-                </select>
-            </div>
-
-                   
-                </div>
-
-
-            </div>
-        </div>
-
-              
-
-        </div>
-
+    
 
 
 
@@ -136,7 +128,6 @@
             </div>
         </div>
     </section>
-
 
 
     <section id="features">
