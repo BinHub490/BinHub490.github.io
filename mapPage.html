@@ -84,9 +84,8 @@
       </section>
 
     <div id="map" class="col-sm-8"></div>
-    <div id="map" class="col-sm-=4">
+    <div id="box" class="col-sm-4">
         <!-- Show everyone's tweets! -->
-
 		<!-- Use ng-repeat directive to repeat a div for each element in chirps -->
 		<!-- order by time (in reverse chronological order) -->
 		<div class="tweet-box" ng-repeat="chirp in chirps">
@@ -111,7 +110,6 @@
 				<span>{{chirp.likes}}</span>
 			</div>
 		</div>
-
     </div>
 
     <script>

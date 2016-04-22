@@ -30,10 +30,6 @@ label {
 
 }
 
-#map {
-  height: 70%;
-}
-
 hr {
     max-width: 50px;
     border-color:#7497AC;
@@ -143,6 +139,11 @@ aside {
 }
 
 @media(min-width:768px) {
+
+    #map {
+      height: 70%;
+    }
+
     .navbar-default {
         border-color: #FFA07D;
         background-color: transparent;
@@ -503,12 +504,11 @@ body {
     webkit-tap-highlight-color: #222;
 }
 
-
 .tweet-box {
 	border-bottom:1px solid #d3d3d3;
 	padding:20px;
-	margin-left:100px;
-	margin-right:100px;
+	/*margin-left:100px;
+	margin-right:100px;*/
 	background-color: white;
 }
 
@@ -539,4 +539,9 @@ body {
   -ms-transform: scaleX(-1); /* IE 9 */
   -webkit-transform: scaleX(-1); /* Chrome, Safari, Opera */
   transform: scaleX(-1);
+}
+
+#box{
+    height: 70%;
+    overflow:auto;
 }
