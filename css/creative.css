@@ -10,17 +10,21 @@ body {
     height: 100%;
 }
 
-@font-face { font-family: Brandon Grotesque; src: url('fonts/Brandon-Free/Brandon_bld.otf'); } 
+@font-face { font-family: Brandon Grotesque; src: url('../fonts/Brandon-Free/Brandon_bld.otf'); } 
 
-@font-face { font-family: Minion Pro; src: url('fonts/Minion Pro Regular/Minion Pro Regular.ttf'); } 
+@font-face { font-family: Minion Pro; src: url('../fonts/Minion Pro Regular/Minion Pro Regular.ttf'); } 
 
 
 body {
-    font-family: Brandon Grotesque;
+    
+    font-family: 'Muli', sans-serif;
+
 }
 
 label {
-    font-family: Brandon Grotesque;
+    
+    font-family: 'Muli', sans-serif;
+
 }
 
 #map {
@@ -186,20 +190,27 @@ aside {
     }
 }
 
-header {
+
+
+#search {
     position: relative;
     width: 100%;
-    min-height: 150%;
+    min-height: 90%;
     text-align: center;
     color: #fff;
     background-image: url("../img/test2.jpg");
     background-position: center;
-    -webkit-background-size: cover;
+      -webkit-background-size: cover;
     -moz-background-size: cover;
     background-size: cover;
     -o-background-size: cover;
 }
 
+#top  {
+    text-align: center; 
+}
+
+/*
 header .header-content {
     position: relative;
     width: 100%;
@@ -251,7 +262,7 @@ header .header-content .header-content-inner p {
         max-width: 80%;
         font-size: 18px;
     }
-}
+}*/
 
 .section-heading {
     margin-top: 0;
