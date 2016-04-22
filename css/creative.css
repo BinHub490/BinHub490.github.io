@@ -6,6 +6,8 @@
 
  @import url(https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css);
 @import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css);
+@font-face { font-family: Brandon Grotesque; src: url('../fonts/Brandon-Free/Brandon_bld.otf'); }
+@font-face { font-family: Minion Pro; src: url('../fonts/Minion Pro Regular/Minion Pro Regular.ttf'); }
 
 html,
 body {
@@ -13,21 +15,12 @@ body {
     height: 100%;
 }
 
-@font-face { font-family: Brandon Grotesque; src: url('../fonts/Brandon-Free/Brandon_bld.otf'); }
-
-@font-face { font-family: Minion Pro; src: url('../fonts/Minion Pro Regular/Minion Pro Regular.ttf'); }
-
-
 body {
-
     font-family: 'Muli', sans-serif;
-
 }
 
 label {
-
     font-family: 'Muli', sans-serif;
-
 }
 
 hr {
@@ -51,7 +44,6 @@ a:hover,
 a:focus {
     color: #eb3812;
 }
-
 
 h1,
 h2,
@@ -137,64 +129,6 @@ aside {
 .navbar-default .nav>li.active>a:focus:hover {
     background-color: transparent;
 }
-
-@media(min-width:768px) {
-
-    #map {
-      height: 70%;
-    }
-
-    .navbar-default {
-        border-color: #FFA07D;
-        background-color: transparent;
-    }
-
-    .navbar-default .navbar-header .navbar-brand {
-        color: #FFA07D;
-    }
-
-    .navbar-default .navbar-header .navbar-brand:hover,
-    .navbar-default .navbar-header .navbar-brand:focus {
-        color: #fff;
-    }
-
-    .navbar-default .nav > li>a,
-    .navbar-default .nav>li>a:focus {
-        color: rgba(255,255,255,.7);
-    }
-
-    .navbar-default .nav > li>a:hover,
-    .navbar-default .nav>li>a:focus:hover {
-        color: #fff;
-    }
-
-    .navbar-default.affix {
-        border-color: rgba(34,34,34,.05);
-        background-color: #fff;
-    }
-
-    .navbar-default.affix .navbar-header .navbar-brand {
-        font-size: 14px;
-        color: #f05f40;
-    }
-
-    .navbar-default.affix .navbar-header .navbar-brand:hover,
-    .navbar-default.affix .navbar-header .navbar-brand:focus {
-        color: #eb3812;
-    }
-
-    .navbar-default.affix .nav > li>a,
-    .navbar-default.affix .nav>li>a:focus {
-        color: #222;
-    }
-
-    .navbar-default.affix .nav > li>a:hover,
-    .navbar-default.affix .nav>li>a:focus:hover {
-        color: #f05f40;
-    }
-}
-
-
 
 #search {
     position: relative;
@@ -337,15 +271,7 @@ header .header-content .header-content-inner p {
     opacity: 1;
 }
 
-@media(min-width:768px) {
-    .portfolio-box .portfolio-box-caption .portfolio-box-caption-content .project-category {
-        font-size: 16px;
-    }
 
-    .portfolio-box .portfolio-box-caption .portfolio-box-caption-content .project-name {
-        font-size: 22px;
-    }
-}
 
 .call-to-action h2 {
     margin: 0 auto 20px;
@@ -533,15 +459,75 @@ body {
 	cursor: pointer;
 }
 
-/* Layout adapted from Mike Freeman */
-.fa-twitter {
-	color:#55acee;
-  -ms-transform: scaleX(-1); /* IE 9 */
-  -webkit-transform: scaleX(-1); /* Chrome, Safari, Opera */
-  transform: scaleX(-1);
-}
-
 #box{
     height: 70%;
     overflow:auto;
 }
+
+@media(min-width:768px) {
+
+    #map {
+      height: 70%;
+    }
+
+    .navbar-default {
+        border-color: #FFA07D;
+        background-color: transparent;
+    }
+
+    .navbar-default .navbar-header .navbar-brand {
+        color: #FFA07D;
+    }
+
+    .navbar-default .navbar-header .navbar-brand:hover,
+    .navbar-default .navbar-header .navbar-brand:focus {
+        color: #fff;
+    }
+
+    .navbar-default .nav > li>a,
+    .navbar-default .nav>li>a:focus {
+        color: rgba(255,255,255,.7);
+    }
+
+    .navbar-default .nav > li>a:hover,
+    .navbar-default .nav>li>a:focus:hover {
+        color: #fff;
+    }
+
+    .navbar-default.affix {
+        border-color: rgba(34,34,34,.05);
+        background-color: #fff;
+    }
+
+    .navbar-default.affix .navbar-header .navbar-brand {
+        font-size: 14px;
+        color: #f05f40;
+    }
+
+    .navbar-default.affix .navbar-header .navbar-brand:hover,
+    .navbar-default.affix .navbar-header .navbar-brand:focus {
+        color: #eb3812;
+    }
+
+    .navbar-default.affix .nav > li>a,
+    .navbar-default.affix .nav>li>a:focus {
+        color: #222;
+    }
+
+    .navbar-default.affix .nav > li>a:hover,
+    .navbar-default.affix .nav>li>a:focus:hover {
+        color: #f05f40;
+    }
+
+    .portfolio-box .portfolio-box-caption .portfolio-box-caption-content .project-category {
+        font-size: 16px;
+    }
+
+    .portfolio-box .portfolio-box-caption .portfolio-box-caption-content .project-name {
+        font-size: 22px;
+    }
+}
+/*
+@media(min-width:768px) {
+
+}*/

@@ -1,5 +1,14 @@
 'use strict';
 
+var map;
+function initMap() {
+  map = new google.maps.Map(document.getElementById('map'), {
+	center: {lat: 47.655601, lng: -122.308903},
+	zoom: 15,
+	mapTypeId: google.maps.MapTypeId.ROADMAP
+  });
+}
+
 angular.module('ChirperApp', ['firebase'])
 .controller('ChirperCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '$firebaseAuth', function($scope, $firebaseObject, $firebaseArray, $firebaseAuth) {
 
@@ -74,8 +83,7 @@ angular.module('ChirperApp', ['firebase'])
   	.catch(function(error){
     	//error handling (called on the promise)
     	console.log(error);
-  	})
-	};
+  	})};
 
 	$scope.signIn = function() {
 		var promise = Auth.$authWithPassword({
@@ -104,8 +112,6 @@ angular.module('ChirperApp', ['firebase'])
 	var authData = Auth.$getAuth(); //get if we're authorized
 	if(authData) {
 	   $scope.userId = authData.uid;
-}
-
-
+	}
 
 }])
