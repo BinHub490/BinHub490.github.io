@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="ChirperApp">
 
 <head>
 
@@ -15,6 +15,9 @@
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+
+    <!-- load angular -->
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.js"></script>
 
     <!-- Custom Fonts -->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
@@ -36,7 +39,7 @@
 
 </head>
 
-  <body id="page-top">
+  <body id="page-top" ng-controller="ChirperCtrl">
       <nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
           <div class="container-fluid">
               <!-- Brand and toggle get grouped for better mobile display -->
@@ -81,7 +84,33 @@
 
     <div id="map" class="col-sm-8"></div>
     <div id="map" class="col-sm-=4">
-        <p>This is where the list would go</p>
+        <!-- Show everyone's tweets! -->
+
+		<!-- Use ng-repeat directive to repeat a div for each element in chirps -->
+		<!-- order by time (in reverse chronological order) -->
+		<div class="tweet-box" ng-repeat="chirp in chirps">
+			<div>
+				<!-- This is an img tag that shows the userImage of that chirp. -->
+				<!-- Note we access the avatar from the users object -->
+				<img class="image" ng-src="{{users[chirp.userId].avatar}}"></img>
+
+				<!-- Use an expressions to show the handle and time of tweet -->
+				<!-- format the time as a 'medium' -->
+				<span class="handle"><!-- do this after auth --></span>
+				<span class="time">{{chirp.time | date:'short'}}</span>
+			</div>
+
+			<!-- Use an expression to show the text of the tweet -->
+			<div class="tweet">{{chirp.text}}</div>
+
+			<div class="likes">
+				<i ng-click="like(tweet)" class="fa fa-heart"></i>
+
+				<!-- Use an expression to show the number of likes -->
+				<span>{{chirp.likes}}</span>
+			</div>
+		</div>
+
     </div>
 
     <script>
@@ -94,7 +123,11 @@
         });
       }
     </script>
+    <!-- load external libraries -->
+    <script src="https://cdn.firebase.com/js/client/2.3.1/firebase.js"></script>
+    <script src="https://cdn.firebase.com/libs/angularfire/1.1.3/angularfire.min.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCoNAEraDcA3gmXPlGncc-RWc5cOuOUz1c&callback=initMap"
     async defer></script>
+    <script src="js/app.js"></script>
   </body>
 </html>
