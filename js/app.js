@@ -1,13 +1,6 @@
 'use strict';
 
-var map;
-function initMap() {
-  map = new google.maps.Map(document.getElementById('map'), {
-	center: {lat: 47.655601, lng: -122.308903},
-	zoom: 15,
-	mapTypeId: google.maps.MapTypeId.ROADMAP
-  });
-}
+var names = [];
 
 angular.module('ChirperApp', ['firebase'])
 .controller('ChirperCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '$firebaseAuth', function($scope, $firebaseObject, $firebaseArray, $firebaseAuth) {
@@ -23,6 +16,21 @@ angular.module('ChirperApp', ['firebase'])
 
 	/* create a $firebaseArray for the chirps reference and add to scope */
 	$scope.chirps = $firebaseArray(chirpsRef);
+	var arr = $firebaseArray(chirpsRef);
+	console.log(typeof arr);
+	console.log($firebaseArray(chirpsRef));
+	var temp = arr.$getRecord("-K3LtNMxEPHgMdWTAx8a");
+	console.log($firebaseArray(chirpsRef).length)
+
+	arr.$loaded().then(function() {
+        console.log("loaded record:", arr.$id);
+       	// To iterate the key/value pairs of the object, use angular.forEach()
+       	angular.forEach(arr, function(value, key) {
+			names.push(value.$id);
+			console.log(key, value.$id);
+			console.log(names.length);
+    	});
+    });
 
 	/* create a $firebaseObject for the users reference and add to scope (as $scope.users) */
 	$scope.users = $firebaseObject(usersRef);
@@ -115,3 +123,26 @@ angular.module('ChirperApp', ['firebase'])
 	}
 
 }])
+
+var map;
+function initMap() {
+  //map = new google.maps.Map(document.getElementById('map'), {
+//	center: {lat: 47.655601, lng: -122.308903},
+//	zoom: 15,
+//	mapTypeId: google.maps.MapTypeId.ROADMAP
+  //});
+
+  var myLatLng = {lat: 47.655601, lng: -122.308903};
+
+  var map = new google.maps.Map(document.getElementById('map'), {
+	zoom: 15,
+	center: myLatLng
+  });
+
+  var marker = new google.maps.Marker({
+	position: myLatLng,
+	map: map,
+	draggable:true,
+	title: 'Hello World!'
+  });
+}
