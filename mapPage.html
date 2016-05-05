@@ -78,8 +78,9 @@
             <form>
 
 <h3>Add a new bin</h3>
-  <fieldset class="form-group " >
-    <input type="zipcode" class="form-control" id="zipcode" placeholder="Enter a Zip Code">
+<fieldset class="form-group " >
+  <label for="type">Location </label>
+    <input type="text" class="form-control" id="location" placeholder="Enter nearby Landmarks or Intersections">
   </fieldset>
   <fieldset class="form-group">
     <label for="type">Donation Type </label>
@@ -103,10 +104,14 @@
       <option>Value Village</option>
     </select>
   </fieldset>
+    <fieldset class="form-group " >
+      <label for="type">Comments </label>
+    <textarea type="text" class="form-control" id="comments" rows = "3" placeholder="Additional Comments"></textarea>
+  </fieldset>
 
-  <a href="mapPage.html">
+  
       <button class="btn btn-danger" type="button">Submit</button>
-  </a>
+ 
 
 </form>
   
