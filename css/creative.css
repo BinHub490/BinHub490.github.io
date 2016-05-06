@@ -466,7 +466,7 @@ body {
 }
 
 #box{
-    height: 70%;
+    height: 80%;
     overflow:auto;
 }
 
@@ -512,7 +512,7 @@ body {
 @media(min-width:768px) {
 
     #map {
-      height: 70%;
+      height: 80%;
     }
 
     .navbar-default {
