@@ -133,7 +133,7 @@ aside {
 #search {
     position: relative;
     width: 100%;
-    min-height: 135%;
+    min-height: 90%;
     text-align: center;
     color: #fff;
     background-image: url("../img/bins.jpg");
@@ -492,6 +492,13 @@ body {
     width: 80%; /* Could be more or less, depending on screen size */
     color: #000000;
 }
+
+.checkbox {
+    text-align: left;
+    padding-left: 20px;
+}
+
+
 
 /* The Close Button */
 .close {

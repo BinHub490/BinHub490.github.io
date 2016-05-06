@@ -79,7 +79,23 @@
                       <label for="type">Location </label>
                         <textarea type="text" class="form-control" id="location" rows = "1" placeholder="Enter nearby Landmarks or Intersections" ng-model="newLocation"></textarea>
                       </fieldset>
-                      <fieldset class="form-group">
+                      <fieldset class="form-group row">
+          <label class="col-sm-12">Donation Type</label>
+      <div class ="row">
+<div class="checkbox col-sm-6 col-md-6">
+  <label><input type="checkbox" value="">Clothes</label>
+  <label><input type="checkbox" value="">Books</label>
+</div>
+
+</div>
+<div class ="row">
+<div class="checkbox col-sm-6 col-md-6">
+  <label><input type="checkbox" value="">Electronics</label>
+  <label><input type="checkbox" value="">Household Items</label>
+</div>
+</div>
+          </fieldset>
+                      <!-- <fieldset class="form-group">
                         <label for="type">Donation Type </label>
                         <select class="form-control" id="type" ng-model="newType">
                           <option>Clothes</option>
@@ -87,7 +103,7 @@
                           <option>Electronics</option>
                           <option>Household Items</option>
                         </select>
-                      </fieldset>
+                      </fieldset> -->
                       <fieldset class="form-group">
                         <label for="organization">Choose Donation Organization </label>
                         <select class="form-control" id="organization" ng-model="newOrganization">
@@ -105,7 +121,8 @@
                           <label for="type">Comments </label>
                         <textarea type="text" class="form-control" id="comments" rows = "3" placeholder="Additional Comments"></textarea>
                       </fieldset>
-                      <button class="btn btn-danger" type="submit" ng-click="addBin()">Submit</button>
+
+                      <button class="btn btn-danger"  id ="submit" type="submit" ng-click="addBin()">Submit</button>
                   </form>
               </div>
           </div>
