@@ -81,7 +81,7 @@
                       </fieldset>
                       <fieldset class="form-group">
                         <label for="type">Donation Type </label>
-                        <select multiple class="form-control" id="type">
+                        <select multiple class="form-control" id="type" ng-model="newType">
                           <option>Clothes</option>
                           <option>Books</option>
                           <option>Electronics</option>
@@ -90,13 +90,13 @@
                       </fieldset>
                       <fieldset class="form-group">
                         <label for="organization">Choose Donation Organization </label>
-                        <select multiple class="form-control" id="organization">
+                        <select multiple class="form-control" id="organization" ng-model="newOrganization">
                           <option>Big Brothers Big Sisters</option>
                           <option>Goodwill</option>
                           <option>Northwest Center</option>
                           <option>The Salvation Army</option>
                           <option>SightConnection</option>
-                           <option>TexGreen Inc.</option>
+                          <option>TexGreen Inc.</option>
                           <option>USAgain</option>
                           <option>Value Village</option>
                         </select>
@@ -128,12 +128,12 @@
     			<div>
     				<!-- Use an expressions to show the handle and time of tweet -->
     				<!-- format the time as a 'medium' -->
-    				<span class="time">{{chirp.organization}}</span>
+    				<h3><span class="time">{{chirp.organization}}</span></h3>
     			</div>
 
     			<!-- Use an expression to show the text of the tweet -->
-    			<div class="tweet">{{chirp.location}}</div>
-
+    			<div class="tweet">Location: {{chirp.location}}</div>
+                <div class="tweet">Accepts: {{chirp.type}}</div>
     			<div class="likes">
     				<i ng-click="like(tweet)" class="fa fa-heart"></i>
 

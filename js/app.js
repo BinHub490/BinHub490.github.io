@@ -45,8 +45,8 @@ angular.module('ChirperApp', ['firebase'])
 	   */
 	$scope.addBin = function() {
 		$scope.chirps.$add({
-			organization: "testOrganization",
-			type: "testType",
+			organization: $scope.newOrganization,
+			type: $scope.newType,
 			location: $scope.newLocation,
 			likes: 0,
 			comment: "testComment"
