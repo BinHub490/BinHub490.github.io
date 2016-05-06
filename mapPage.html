@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en" ng-app="ChirperApp">
 
@@ -53,71 +54,61 @@
                   </div>
 
                   <!-- Collect the nav links, forms, and other content for toggling -->
-                  
+
           </nav>
 
           <section class="bg-primary" id="mission">
               <div class="container">
                   <div class="row">
                       <div class="col-lg-8 col-lg-offset-2 text-center">
-                          
+
 
 
                          <!-- Trigger/Open The Modal -->
-<button class="btn btn-danger" id="myBtn">Add Bin</button>
+        <button class="btn btn-danger" id="myBtn">Add Bin</button>
 
-<!-- The Modal -->
-<div id="myModal" class="modal">
+        <!-- The Modal -->
+        <div id="myModal" class="modal">
 
-  <!-- Modal content -->
-  <div class="modal-content">
-    <span class="close">x</span>
-    
-
-
-            <form>
-
-<h3>Add a new bin</h3>
-<fieldset class="form-group " >
-  <label for="type">Location </label>
-    <input type="text" class="form-control" id="location" placeholder="Enter nearby Landmarks or Intersections">
-  </fieldset>
-  <fieldset class="form-group">
-    <label for="type">Donation Type </label>
-    <select multiple class="form-control" id="type">
-      <option>Clothes</option>
-      <option>Books</option>
-      <option>Electronics</option>
-      <option>Household Items</option>
-    </select>
-  </fieldset>
-  <fieldset class="form-group">
-    <label for="organization">Choose Donation Organization </label>
-    <select multiple class="form-control" id="organization">
-      <option>Big Brothers Big Sisters</option>
-      <option>Goodwill</option>
-      <option>Northwest Center</option>
-      <option>The Salvation Army</option>
-      <option>SightConnection</option>
-       <option>TexGreen Inc.</option>
-      <option>USAgain</option>
-      <option>Value Village</option>
-    </select>
-  </fieldset>
-    <fieldset class="form-group " >
-      <label for="type">Comments </label>
-    <textarea type="text" class="form-control" id="comments" rows = "3" placeholder="Additional Comments"></textarea>
-  </fieldset>
-
-  
-      <button class="btn btn-danger" type="button">Submit</button>
- 
-
-</form>
-  
-
-</div>
-                      </div>
+          <!-- Modal content -->
+          <div class="modal-content">
+              <span class="close">x</span>
+                  <form>
+                    <h3>Add a new bin</h3>
+                    <fieldset class="form-group " >
+                      <label for="type">Location </label>
+                        <textarea type="text" class="form-control" id="location" rows = "1" placeholder="Enter nearby Landmarks or Intersections" ng-model="newLocation"></textarea>
+                      </fieldset>
+                      <fieldset class="form-group">
+                        <label for="type">Donation Type </label>
+                        <select multiple class="form-control" id="type">
+                          <option>Clothes</option>
+                          <option>Books</option>
+                          <option>Electronics</option>
+                          <option>Household Items</option>
+                        </select>
+                      </fieldset>
+                      <fieldset class="form-group">
+                        <label for="organization">Choose Donation Organization </label>
+                        <select multiple class="form-control" id="organization">
+                          <option>Big Brothers Big Sisters</option>
+                          <option>Goodwill</option>
+                          <option>Northwest Center</option>
+                          <option>The Salvation Army</option>
+                          <option>SightConnection</option>
+                           <option>TexGreen Inc.</option>
+                          <option>USAgain</option>
+                          <option>Value Village</option>
+                        </select>
+                      </fieldset>
+                        <fieldset class="form-group " >
+                          <label for="type">Comments </label>
+                        <textarea type="text" class="form-control" id="comments" rows = "3" placeholder="Additional Comments"></textarea>
+                      </fieldset>
+                      <button class="btn btn-danger" type="submit" ng-click="addBin()">Submit</button>
+                  </form>
+              </div>
+          </div>
                   </div>
               </div>
           </section>
@@ -135,18 +126,13 @@
     		<!-- order by time (in reverse chronological order) -->
     		<div class="tweet-box" ng-repeat="chirp in chirps">
     			<div>
-    				<!-- This is an img tag that shows the userImage of that chirp. -->
-    				<!-- Note we access the avatar from the users object -->
-    				<img class="image" ng-src="{{users[chirp.userId].avatar}}"></img>
-
     				<!-- Use an expressions to show the handle and time of tweet -->
     				<!-- format the time as a 'medium' -->
-    				<span class="handle"><!-- do this after auth --></span>
-    				<span class="time">{{chirp.time | date:'short'}}</span>
+    				<span class="time">{{chirp.organization}}</span>
     			</div>
 
     			<!-- Use an expression to show the text of the tweet -->
-    			<div class="tweet">{{chirp.text}}</div>
+    			<div class="tweet">{{chirp.location}}</div>
 
     			<div class="likes">
     				<i ng-click="like(tweet)" class="fa fa-heart"></i>
