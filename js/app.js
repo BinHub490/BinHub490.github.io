@@ -81,15 +81,15 @@ angular.module('ChirperApp', ['firebase'])
 // }
 
 var locations = [
-     ['Title A', 3.180967,101.715546, 1],
-     ['Title B', 3.200848,101.616669, 2],
-     ['Title C', 3.147372,101.597443, 3],
-     ['Title D', 3.19125,101.710052, 4]
+     ['Title A', 47.658985,-122.306736, 1],
+     ['Title B', 47.658378,-122.317035, 2],
+     ['Title C', 47.655459,-122.314203, 3],
+     ['Title D', 47.661283,-122.313731, 4]
 ];
 function initMap() {
 	var map = new google.maps.Map(document.getElementById('map'), {
-	     zoom: 12,
-	     center: new google.maps.LatLng(3.171368,101.653404),
+	     zoom: 15,
+	     center: {lat: 47.655601, lng: -122.308903},
 	     mapTypeId: google.maps.MapTypeId.ROADMAP
 	});
 
@@ -145,5 +145,3 @@ window.onclick = function(event) {
         modal.style.display = "none";
     }
 }
-
-
