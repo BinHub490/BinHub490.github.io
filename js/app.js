@@ -1,6 +1,6 @@
 'use strict';
 
-var names = [];
+var binLocations = [];
 
 angular.module('ChirperApp', ['firebase'])
 .controller('ChirperCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '$firebaseAuth', function($scope, $firebaseObject, $firebaseArray, $firebaseAuth) {
@@ -11,50 +11,22 @@ angular.module('ChirperApp', ['firebase'])
 	/* define reference to the "chirps" value in the app */
 	var chirpsRef = ref.child("chirps");
 
-	/* define reference to the "users" value in the app */
-	var usersRef = ref.child("users");
-
 	/* create a $firebaseArray for the chirps reference and add to scope */
 	$scope.chirps = $firebaseArray(chirpsRef);
 
-	// var arr = $firebaseArray(chirpsRef);
-	// console.log(typeof arr);
-	// console.log($firebaseArray(chirpsRef));
-	// var temp = arr.$getRecord("-K3LtNMxEPHgMdWTAx8a");
-	// console.log($firebaseArray(chirpsRef).length)
-	//
-	// arr.$loaded().then(function() {
-    //     console.log("loaded record:", arr.$id);
-    //    	// To iterate the key/value pairs of the object, use angular.forEach()
-    //    	angular.forEach(arr, function(value, key) {
-	// 		names.push(value.$id);
-	// 		console.log(key, value.$id);
-	// 		console.log(names.length);
-    // 	});
-    // });
 
-	/* Write an accessible (on scope) chirp() function to save a tweet */
-
-	   /* Add a new object to the tweets array by calling the
-	      firebaseArray .$add method on the chirps $firebaseArray. Include:
-	         text: the text in textarea,
-	         userId:current user id (make "-1" for now),
-	         likes:0,
-	         time:Firebase.ServerValue.TIMESTAMP
-	              // this tells firebase server to save the current time
-	   */
 	$scope.addBin = function() {
 		$scope.chirps.$add({
 			organization: $scope.newOrganization,
 			type: $scope.newType,
-			location: $scope.newLocation,
+			x: $scope.newX,
+			y: $scope.newY,
 			likes: 0,
 			comment: "testComment"
 		}).then(function() {
-			$scope.newLocation= '';
+			$scope.newLocation = '';
 		});
 	}
-
 }])
 
 // var map;
@@ -86,7 +58,13 @@ var locations = [
      ['Title C', 47.655459,-122.314203, 3],
      ['Title D', 47.661283,-122.313731, 4]
 ];
+
+
 function initMap() {
+
+	/* define reference to your firebase app */
+	var ref = new Firebase("https://binhub.firebaseio.com");
+
 	var map = new google.maps.Map(document.getElementById('map'), {
 	     zoom: 15,
 	     center: {lat: 47.655601, lng: -122.308903},
@@ -95,23 +73,44 @@ function initMap() {
 
 	var infowindow = new google.maps.InfoWindow;
 
+	// Adds a new marker on click
+	map.addListener('click', function(e) {
+		var marker = new google.maps.Marker({
+			position: {lat: e.latLng.lat(), lng: e.latLng.lng()},
+			map: map
+		});
+	});
+
 	var marker, i;
 
-	for (i = 0; i < locations.length; i++) {
-	    marker = new google.maps.Marker({
-	         position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-	         map: map
-	    });
+	ref.once('value', function(dataSnapshot) {
+		console.log(dataSnapshot.val().chirps);
+		var locations = []
 
-	    google.maps.event.addListener(marker, 'click', (function(marker, i) {
-	         return function() {
-	             infowindow.setContent(locations[i][0]);
-	             infowindow.open(map, marker);
-	         }
-	    })(marker, i));
-	}
+		for(var i in dataSnapshot.val().chirps)
+    		locations.push([i, dataSnapshot.val().chirps[i]]);
+
+		console.log(locations);
+
+		for (i = 0; i < locations.length; i++) {
+		    marker = new google.maps.Marker({
+		         position: new google.maps.LatLng(locations[i][1].x, locations[i][1].y),
+		         map: map
+		    });
+
+		    google.maps.event.addListener(marker, 'click', (function(marker, i) {
+		         return function() {
+		             infowindow.setContent(locations[i][1].organization);
+		             infowindow.open(map, marker);
+		         }
+		    })(marker, i));
+		}
+
+	});
+
+
+
 }
-
 
 // Get the modal
 var modal = document.getElementById('myModal');
@@ -132,12 +131,10 @@ submitbtn.onclick = function() {
     modal.style.display = "none";
 }
 
-
 // When the user clicks on <span> (x), close the modal
 span.onclick = function() {
     modal.style.display = "none";
 }
-
 
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function(event) {
