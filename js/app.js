@@ -1,22 +1,19 @@
 'use strict';
 
-var binLocations = [];
-
-angular.module('ChirperApp', ['firebase'])
-.controller('ChirperCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '$firebaseAuth', function($scope, $firebaseObject, $firebaseArray, $firebaseAuth) {
+angular.module('BinHubApp', ['firebase'])
+.controller('BinHubCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '$firebaseAuth', function($scope, $firebaseObject, $firebaseArray, $firebaseAuth) {
 
 	/* define reference to your firebase app */
 	var ref = new Firebase("https://binhub.firebaseio.com");
 
 	/* define reference to the "chirps" value in the app */
-	var chirpsRef = ref.child("chirps");
+	var binsRef = ref.child("bins");
 
 	/* create a $firebaseArray for the chirps reference and add to scope */
-	$scope.chirps = $firebaseArray(chirpsRef);
-
+	$scope.bins = $firebaseArray(binsRef);
 
 	$scope.addBin = function() {
-		$scope.chirps.$add({
+		$scope.bins.$add({
 			organization: $scope.newOrganization,
 			type: $scope.newType,
 			x: $scope.newX,
@@ -29,87 +26,67 @@ angular.module('ChirperApp', ['firebase'])
 	}
 }])
 
-// var map;
-// function initMap() {
-//   //map = new google.maps.Map(document.getElementById('map'), {
-// //	center: {lat: 47.655601, lng: -122.308903},
-// //	zoom: 15,
-// //	mapTypeId: google.maps.MapTypeId.ROADMAP
-//   //});
-//
-//   var myLatLng = {lat: 47.655601, lng: -122.308903};
-//
-//   var map = new google.maps.Map(document.getElementById('map'), {
-// 	zoom: 15,
-// 	center: myLatLng
-//   });
-//
-//   var marker = new google.maps.Marker({
-// 	position: myLatLng,
-// 	map: map,
-// 	draggable:true,
-// 	title: 'Hello World!'
-//   });
-// }
-
-var locations = [
-     ['Title A', 47.658985,-122.306736, 1],
-     ['Title B', 47.658378,-122.317035, 2],
-     ['Title C', 47.655459,-122.314203, 3],
-     ['Title D', 47.661283,-122.313731, 4]
-];
-
-
+// Function that creates map asynchronously
 function initMap() {
 
 	/* define reference to your firebase app */
 	var ref = new Firebase("https://binhub.firebaseio.com");
 
+	// Defines map centered at UW
 	var map = new google.maps.Map(document.getElementById('map'), {
 	     zoom: 15,
 	     center: {lat: 47.655601, lng: -122.308903},
 	     mapTypeId: google.maps.MapTypeId.ROADMAP
 	});
 
-	var infowindow = new google.maps.InfoWindow;
-
 	// Adds a new marker on click
-	map.addListener('click', function(e) {
-		var marker = new google.maps.Marker({
-			position: {lat: e.latLng.lat(), lng: e.latLng.lng()},
-			map: map
-		});
-	});
+	// map.addListener('click', function(e) {
+	// 	var marker = new google.maps.Marker({
+	// 		position: {lat: e.latLng.lat(), lng: e.latLng.lng()},
+	// 		map: map
+	// 	});
+	// });
 
-	var marker, i;
-
+	// Async function, once firebase array is loaded, map is populated
 	ref.once('value', function(dataSnapshot) {
-		console.log(dataSnapshot.val().chirps);
+		// console.log(dataSnapshot.val().chirps);
+
 		var locations = []
+		var marker, i;
+		var infowindow = new google.maps.InfoWindow;
 
-		for(var i in dataSnapshot.val().chirps)
-    		locations.push([i, dataSnapshot.val().chirps[i]]);
+		for(var i in dataSnapshot.val().bins) {
+			locations.push([i, dataSnapshot.val().bins[i]]);
+		}
 
-		console.log(locations);
+		// console.log(locations);
 
 		for (i = 0; i < locations.length; i++) {
+
+			// Creates a new marker with latlng from DB
 		    marker = new google.maps.Marker({
 		         position: new google.maps.LatLng(locations[i][1].x, locations[i][1].y),
 		         map: map
 		    });
 
+			// Creates a description infobox for each marker
 		    google.maps.event.addListener(marker, 'click', (function(marker, i) {
+				var contentString = '<div id="content">'+
+					'<div id="siteNotice">'+
+			    	'</div>'+
+			        '<h1 id="firstHeading" class="firstHeading">' + locations[i][1].organization + ' Bin</h1>'+
+			        '<div id="bodyContent">'+
+				    '<p><b>Address: </b>' + locations[i][1].x + ', ' + locations[i][1].y +
+			        '<p><b>Accepts: </b>' + locations[i][1].type + '</p>'+
+			        '</div>'+
+			        '</div>';
 		         return function() {
-		             infowindow.setContent(locations[i][1].organization);
+		             infowindow.setContent(contentString);
 		             infowindow.open(map, marker);
 		         }
 		    })(marker, i));
 		}
-
 	});
-
-
-
 }
 
 // Get the modal

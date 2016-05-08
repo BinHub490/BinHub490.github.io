@@ -1,6 +1,6 @@
 
 <!DOCTYPE html>
-<html lang="en" ng-app="ChirperApp">
+<html lang="en" ng-app="BinHubApp">
 
     <head>
         <meta charset="utf-8">
@@ -39,7 +39,8 @@
 
     </head>
 
-      <body id="page-top" ng-controller="ChirperCtrl">
+      <body id="page-top" ng-controller="BinHubCtrl">
+
           <nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
               <div class="container-fluid">
                   <!-- Brand and toggle get grouped for better mobile display -->
@@ -54,88 +55,94 @@
                   </div>
 
                   <!-- Collect the nav links, forms, and other content for toggling -->
+                  <!-- <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                      <ul class="nav navbar-nav navbar-right">
+                          <li>
+                              <button class="btn btn-danger" id="myBtn">Add Bin</button>
+                          </li>
+                      </ul>
+                  </div> -->
 
+              </div>
           </nav>
+
+
 
           <section class="bg-primary" id="mission">
               <div class="container">
                   <div class="row">
                       <div class="col-lg-8 col-lg-offset-2 text-center">
 
+                          <!-- Trigger/Open The Modal -->
+                              <button class="btn btn-danger" id="myBtn">Add Bin</button>
+                              <!-- The Modal -->
+                              <div id="myModal" class="modal">
 
+                                  <!-- Modal content -->
+                                  <div class="modal-content">
+                                      <span class="close">x</span>
+                                          <form onsubmit="window.location.assign('#close')">
+                                            <h3>Add a new bin</h3>
+                                                <fieldset class="form-group" >
+                                                    <label for="type">X</label>
+                                                    <textarea type="text" class="form-control" id="location" rows = "1" placeholder="Enter nearby Landmarks or Intersections" ng-model="newX"></textarea>
+                                                </fieldset>
+                                                <fieldset class="form-group" >
+                                                    <label for="type">Y</label>
+                                                    <textarea type="text" class="form-control" id="location" rows = "1" placeholder="Enter nearby Landmarks or Intersections" ng-model="newY"></textarea>
+                                                </fieldset>
 
-                         <!-- Trigger/Open The Modal -->
-        <button class="btn btn-danger" id="myBtn">Add Bin</button>
+                                                <!-- <fieldset class="form-group row">
+                                                    <label class="col-sm-12">Donation Type</label>
+                                                    <table style="width:100%" ng-model="newType">
+                                                      <tr style="text-align:left">
+                                                        <td><label><input type="checkbox">Clothes</label></td>
+                                                        <td><label><input type="checkbox">Books</label></td>
+                                                        <td><label><input type="checkbox">Food</label></td>
+                                                      </tr>
+                                                      <tr style="text-align:left">
+                                                        <td><label><input type="checkbox">Electronics</label></td>
+                                                        <td><label><input type="checkbox">Household Items</label></td>
+                                                        <td><label><input type="checkbox">Other</label></td>
+                                                      </tr>
+                                                    </table>
+                                                </fieldset> -->
 
-        <!-- The Modal -->
-        <div id="myModal" class="modal">
+                                              <fieldset class="form-group">
+                                                  <label for="type">Donation Type </label>
+                                                  <select class="form-control" id="type" ng-model="newType">
+                                                      <option>Clothes</option>
+                                                      <option>Food</option>
+                                                      <option>Books</option>
+                                                      <option>Electronics</option>
+                                                      <option>Household Items</option>
+                                                  </select>
+                                              </fieldset>
 
-          <!-- Modal content -->
-          <div class="modal-content">
-              <span class="close">x</span>
-                  <form onsubmit="window.location.assign('#close')">
-                    <h3>Add a new bin</h3>
+                                              <fieldset class="form-group">
+                                                  <label for="organization">Choose Donation Organization </label>
+                                                  <select class="form-control" id="organization" ng-model="newOrganization">
+                                                      <option>Big Brothers Big Sisters</option>
+                                                      <option>Goodwill</option>
+                                                      <option>Northwest Center</option>
+                                                      <option>The Salvation Army</option>
+                                                      <option>SightConnection</option>
+                                                      <option>TexGreen Inc.</option>
+                                                      <option>USAgain</option>
+                                                      <option>Value Village</option>
+                                                  </select>
+                                              </fieldset>
 
+                                              <fieldset class="form-group " >
+                                                  <label for="type">Comments </label>
+                                                  <textarea type="text" class="form-control" id="comments" rows = "3" placeholder="Additional Comments"></textarea>
+                                              </fieldset>
 
+                                              <button class="btn btn-danger"  id ="submit" type="submit" ng-click="addBin()">Submit</button>
 
-                    <fieldset class="form-group" >
-                      <label for="type">X</label>
-                        <textarea type="text" class="form-control" id="location" rows = "1" placeholder="Enter nearby Landmarks or Intersections" ng-model="newX"></textarea>
-                      </fieldset>
-                      <fieldset class="form-group" >
-                        <label for="type">Y</label>
-                          <textarea type="text" class="form-control" id="location" rows = "1" placeholder="Enter nearby Landmarks or Intersections" ng-model="newY"></textarea>
-                        </fieldset>
-
-
-
-                        <!-- <fieldset class="form-group row">
-          <label class="col-sm-12">Donation Type</label>
-              <div class ="row">
-                  <div class="checkbox col-sm-6 col-md-6">
-                      <label><input type="checkbox" value="" ng-model="newType">Clothes</label>
-                      <label><input type="checkbox" value="" ng-model="newType">Books</label>
-                  </div>
-              </div>
-
-              <div class ="row">
-                  <div class="checkbox col-sm-6 col-md-6">
-                      <label><input type="checkbox" value="" ng-model="newType">Electronics</label>
-                      <label><input type="checkbox" value="" ng-model="newType">Household Items</label>
-                  </div>
-              </div>
-          </fieldset> -->
-                      <fieldset class="form-group">
-                        <label for="type">Donation Type </label>
-                        <select class="form-control" id="type" ng-model="newType">
-                          <option>Clothes</option>
-                          <option>Books</option>
-                          <option>Electronics</option>
-                          <option>Household Items</option>
-                        </select>
-                      </fieldset>
-                      <fieldset class="form-group">
-                        <label for="organization">Choose Donation Organization </label>
-                        <select class="form-control" id="organization" ng-model="newOrganization">
-                          <option>Big Brothers Big Sisters</option>
-                          <option>Goodwill</option>
-                          <option>Northwest Center</option>
-                          <option>The Salvation Army</option>
-                          <option>SightConnection</option>
-                          <option>TexGreen Inc.</option>
-                          <option>USAgain</option>
-                          <option>Value Village</option>
-                        </select>
-                      </fieldset>
-                        <fieldset class="form-group " >
-                          <label for="type">Comments </label>
-                        <textarea type="text" class="form-control" id="comments" rows = "3" placeholder="Additional Comments"></textarea>
-                      </fieldset>
-
-                      <button class="btn btn-danger"  id ="submit" type="submit" ng-click="addBin()">Submit</button>
-                  </form>
-              </div>
-          </div>
+                                          </form>
+                                        </div>
+                      </div>
                   </div>
               </div>
           </section>
@@ -151,21 +158,21 @@
             <!-- Show everyone's tweets! -->
     		<!-- Use ng-repeat directive to repeat a div for each element in chirps -->
     		<!-- order by time (in reverse chronological order) -->
-    		<div class="tweet-box" ng-repeat="chirp in chirps">
+    		<div class="tweet-box" ng-repeat="bin in bins">
     			<div>
     				<!-- Use an expressions to show the handle and time of tweet -->
     				<!-- format the time as a 'medium' -->
-    				<h3><span class="time">{{chirp.organization}}</span></h3>
+    				<h3><span class="time">{{bin.organization}}</span></h3>
     			</div>
 
     			<!-- Use an expression to show the text of the tweet -->
-    			<div class="tweet">Location: {{chirp.location}}</div>
-                <div class="tweet">Accepts: {{chirp.type}}</div>
+    			<div class="tweet">Location: {{bin.x}}, {{bin.y}}</div>
+                <div class="tweet">Accepts: {{bin.type}}</div>
     			<div class="likes">
     				<i ng-click="like(tweet)" class="fa fa-heart"></i>
 
     				<!-- Use an expression to show the number of likes -->
-    				<span>{{chirp.likes}}</span>
+    				<span>{{bin.likes}}</span>
     			</div>
     		</div>
         </div>
