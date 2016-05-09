@@ -24,6 +24,10 @@ angular.module('BinHubApp', ['firebase'])
 			$scope.newLocation = '';
 		});
 	}
+
+	$scope.like = function(bin) {
+		bin.likes = bin.likes + 1;
+	}
 }])
 
 // Function that creates map asynchronously

@@ -24,6 +24,8 @@
 
         <link href='https://fonts.googleapis.com/css?family=Muli:400,300' rel='stylesheet' type='text/css'>
 
+        <link rel="icon" href="/img/BinHub-Logo.png">
+
         <!-- Plugin CSS -->
         <link rel="stylesheet" href="css/animate.min.css" type="text/css">
 
@@ -169,7 +171,7 @@
     			<div class="tweet">Location: {{bin.x}}, {{bin.y}}</div>
                 <div class="tweet">Accepts: {{bin.type}}</div>
     			<div class="likes">
-    				<i ng-click="like(tweet)" class="fa fa-heart"></i>
+    				<i ng-click="like(bin)" class="fa fa-heart"></i>
 
     				<!-- Use an expression to show the number of likes -->
     				<span>{{bin.likes}}</span>
