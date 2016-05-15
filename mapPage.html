@@ -70,13 +70,17 @@
 
 
 
-          <section class="bg-primary" id="mission">
+
+      
+
+          <section class="bg-primary" id="filters">
+
               <div class="container">
                   <div class="row">
-                      <div class="col-lg-8 col-lg-offset-2 text-center">
+                      <div class="col-lg-2 text-center">
 
-                          <!-- Trigger/Open The Modal -->
-                              <button class="btn btn-danger" id="myBtn">Add Bin</button>
+
+                         
                               <!-- The Modal -->
                               <div id="myModal" class="modal">
 
@@ -145,6 +149,116 @@
                                           </form>
                                         </div>
                       </div>
+
+                      <input type="zipcode" class="form-control" id="zipcode" placeholder="Search By City or Zip Code">
+                    </div>
+
+                     <div class="col-lg-2 ">
+
+ 
+                     <div id="list1" class=" dropdown-check-list " tabindex="100">
+        <span class="anchor">Donation Type</span>
+        <ul class="items">
+            <li><input type="checkbox" />Apple </li>
+            <li><input type="checkbox" />Orange</li>
+            <li><input type="checkbox" />Grapes </li>
+            <li><input type="checkbox" />Berry </li>
+            <li><input type="checkbox" />Mango </li>
+            <li><input type="checkbox" />Banana </li>
+            <li><input type="checkbox" />Tomato</li>
+        </ul>
+    </div>
+  </div>
+
+
+                  <div class="col-lg-2 text-center">
+                       <select class="form-control" id="organization">
+                        <option>Organization</option>
+      <option>Big Brothers Big Sisters</option>
+      <option>Goodwill</option>
+      <option>Northwest Center</option>
+      <option>The Salvation Army</option>
+      <option>SightConnection</option>
+       <option>TexGreen Inc.</option>
+      <option>USAgain</option>
+      <option>Value Village</option>
+    </select>
+     </div>
+
+
+<div class="col-lg-4 text-center">
+  </div>
+
+
+                   
+
+                         <!-- Trigger/Open The Modal -->
+                         <div class="col-lg-2 text-center">
+                      <button class="btn btn-danger" id="myBtn">Add Bin</button>
+                    </div>
+
+                       </div>
+
+        <!-- The Modal -->
+        <div id="myModal" class="modal">
+
+          <!-- Modal content -->
+          <div class="modal-content">
+              <span class="close">x</span>
+                  <form onsubmit="window.location.assign('#close')">
+                    <h3>Add a new bin</h3>
+                    <fieldset class="form-group " >
+                      <label for="type">Location </label>
+                        <textarea type="text" class="form-control" id="location" rows = "1" placeholder="Enter nearby Landmarks or Intersections" ng-model="newLocation"></textarea>
+                      </fieldset>
+                      <fieldset class="form-group row">
+          <label class="col-sm-12">Donation Type</label>
+      <div class ="row">
+<div class="checkbox col-sm-6 col-md-6">
+  <label><input type="checkbox" value="">Clothes</label>
+  <label><input type="checkbox" value="">Books</label>
+</div>
+
+</div>
+<div class ="row">
+<div class="checkbox col-sm-6 col-md-6">
+  <label><input type="checkbox" value="">Electronics</label>
+  <label><input type="checkbox" value="">Household Items</label>
+</div>
+</div>
+          </fieldset>
+                      <!-- <fieldset class="form-group">
+                        <label for="type">Donation Type </label>
+                        <select class="form-control" id="type" ng-model="newType">
+                          <option>Clothes</option>
+                          <option>Books</option>
+                          <option>Electronics</option>
+                          <option>Household Items</option>
+                        </select>
+                      </fieldset> -->
+                      <fieldset class="form-group">
+                        <label for="organization">Choose Donation Organization </label>
+                        <select class="form-control" id="organization" ng-model="newOrganization">
+                          <option>Big Brothers Big Sisters</option>
+                          <option>Goodwill</option>
+                          <option>Northwest Center</option>
+                          <option>The Salvation Army</option>
+                          <option>SightConnection</option>
+                          <option>TexGreen Inc.</option>
+                          <option>USAgain</option>
+                          <option>Value Village</option>
+                        </select>
+                      </fieldset>
+                        <fieldset class="form-group " >
+                          <label for="type">Comments </label>
+                        <textarea type="text" class="form-control" id="comments" rows = "3" placeholder="Additional Comments"></textarea>
+                      </fieldset>
+
+                      <button class="btn btn-danger"  id ="submit" type="submit" ng-click="addBin()">Submit</button>
+                  </form>
+              </div>
+          </div>
+
                   </div>
               </div>
           </section>
