@@ -133,7 +133,7 @@ aside {
 #search {
     position: relative;
     width: 100%;
-    min-height: 90%;
+    min-height: 100%;
     text-align: center;
     color: #fff;
     background-image: url("../img/bins.jpg");
@@ -352,6 +352,11 @@ fieldset[disabled] .btn-default.active {
     -webkit-transition: all .35s;
     -moz-transition: all .35s;
     transition: all .35s;
+}
+
+#filters {
+    height: 80px;
+    padding-top: 65px;
 }
 
 .btn-primary:hover,
