@@ -13,15 +13,22 @@ angular.module('BinHubApp', ['firebase'])
 	$scope.bins = $firebaseArray(binsRef);
 
 	$scope.addBin = function() {
-		$scope.bins.$add({
-			organization: $scope.newOrganization,
-			type: $scope.newType,
-			x: $scope.newX,
-			y: $scope.newY,
-			likes: 0,
-			comment: "testComment"
-		}).then(function() {
-			$scope.newLocation = '';
+		var geocoder = new google.maps.Geocoder();
+		var address = $scope.newAddress;
+		geocoder.geocode({ 'address': address }, function(results, status) {
+			if (status == google.maps.GeocoderStatus.OK) {
+				$scope.bins.$add({
+					organization: $scope.newOrganization,
+					type: $scope.newType,
+					x: (results[0].geometry.viewport.H.H + results[0].geometry.viewport.H.j) / 2,
+					y: (results[0].geometry.viewport.j.H + results[0].geometry.viewport.j.j) / 2,
+					address: $scope.newAddress,
+					likes: 0,
+					comment: "testComment"
+				});
+			} else {
+				alert("Geocode was not successful for the following reason: " + status);
+			}
 		});
 	}
 
@@ -136,5 +143,3 @@ window.onclick = function(event) {
         checkList.onblur = function(evt) {
             checkList.classList.remove('visible');
         }
-
- 
