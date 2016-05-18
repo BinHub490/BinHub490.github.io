@@ -87,7 +87,7 @@ function initMap() {
 			    	'</div>'+
 			        '<h1 id="firstHeading" class="firstHeading">' + locations[i][1].organization + ' Bin</h1>'+
 			        '<div id="bodyContent">'+
-				    '<p><b>Address: </b>' + locations[i][1].x + ', ' + locations[i][1].y +
+				    '<p><b>Address: </b>' + locations[i][1].address +
 			        '<p><b>Accepts: </b>' + locations[i][1].type + '</p>'+
 			        '</div>'+
 			        '</div>';
