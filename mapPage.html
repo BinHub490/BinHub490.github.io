@@ -286,10 +286,13 @@
                 <div class="tweet">Address: {{bin.address}}</div>
                 <div class="tweet">Accepts: {{bin.type}}</div>
     			<div class="likes">
-    				<i ng-click="like(bin)" class="fa fa-heart"></i>
+    				<i ng-click="like(bin)" class="fa fa-thumbs-up"></i>
 
     				<!-- Use an expression to show the number of likes -->
     				<span>{{bin.likes}}</span>
+
+                    <i ng-click="dislike(bin)" class="fa fa-thumbs-down"></i>
+                    <span>{{bin.dislikes}}</span>
     			</div>
     		</div>
         </div>

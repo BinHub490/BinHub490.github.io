@@ -56,6 +56,7 @@ angular.module('BinHubApp', ['firebase'])
 					info: info,
 					website: website,
 					likes: 0,
+					dislikes: 0,
 					comment: "testComment"
 				});
 				var marker = new google.maps.Marker({
@@ -73,6 +74,14 @@ angular.module('BinHubApp', ['firebase'])
 		var likes = bin.likes;
 		thisBinRef.update({
 			"likes": likes + 1
+		});
+	}
+
+	$scope.dislike = function(bin) {
+		var thisBinRef = binsRef.child(bin.$id);
+		var dislike = bin.dislikes;
+		thisBinRef.update({
+			"dislikes": dislike - 1
 		});
 	}
 }])
