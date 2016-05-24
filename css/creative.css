@@ -470,9 +470,13 @@ body {
 	cursor: pointer;
 }
 
-#box{
+#box {
     height: 80%;
     overflow:auto;
+}
+
+#content {
+    width: 500px;
 }
 
 .modal {
@@ -532,7 +536,7 @@ body {
   border: 1px solid #ccc;
   background-color: white;
   color: black;
-  border-radius: 5px; 
+  border-radius: 5px;
 
 }
 .dropdown-check-list .anchor:after {

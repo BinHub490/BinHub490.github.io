@@ -15,6 +15,36 @@ angular.module('BinHubApp', ['firebase'])
 	$scope.addBin = function() {
 		var geocoder = new google.maps.Geocoder();
 		var address = $scope.newAddress;
+		var organization = $scope.newOrganization;
+		var website;
+		var info;
+
+		if(organization === "Big Brothers Big Sisters") {
+			info = "Nation's largest donor and volunteer supported mentoring network. Big Brothers Big Sisters is a non profit organization which collects used clothing and household items to benefit mentoring programs that match kids with mentors.";
+			website = "https://www.bbbsps.org/page.aspx?pid=191";
+		} else if(organization === "Goodwill") {
+			info = "On average, each of us throws 70 lbs. of clothes away every year. We want at least one of yours. By giving Goodwill a pound or more of your stuff, you’re helping a whole community. So donate to us today – and help make your local landfill a few pounds lighter.";
+			website = "http://seattlegoodwill.org/";
+		} else if(organization === "Northwest Center") {
+			info = "Since 1965, Northwest Center advances equal opportunities for children and adults with developmental disabilities. They partner with Value Village and collect and deliver donated items to be re-sold at local stores.";
+			website = "http://www.bigbluetruck.org/";
+		} else if(organization === "The Salvation Army") {
+			info = "The Salvation Army, an international movement, is an evangelical part of the universal Christian Church. Its message is based on the Bible. Its ministry is motivated by the love of God. Its mission is to preach the gospel of Jesus Christ and to meet human needs in His name without discrimination.";
+			website = "http://www.salvationarmyusa.org/";
+		} else if(organization === "Sight Connection") {
+			info = "It is the mission of SightConnection to enhance the ability of people with vision loss to lead active, independent lives. Each year we help thousands of people with vision loss remain active and independent.  By donating your used clothing and household goods, you are not only helping us to provide vision rehabilitation services, but you benefit our planet by helping to keep items out of the landfill!"
+			website = "http://www.donatesightconnection.org/";
+		} else if(organization === "TexGreen Inc.") {
+			info = "We are TexGreen - a textile recycling company, which strives to provide easy and convenient public recycling solutions for unwanted textiles. Our well-maintained recycle bins can be found in various retail locations, throughout the states of Washington and California. We strongly believe that clothes recycling should be easy and accessible to everybody.";
+			website = "http://texgreenteam.com/";
+		} else if(organization === "USAgain") {
+			info = "USagain is a for-profit company that collects unwanted textiles and resells them in the U.S. and abroad, diverting millions of pounds of clothing from landfills. Founded in 1999, they provide consumers with a convenient and eco-friendly way to donate excess clothing through 12,000 collection bins in 16 states.";
+			website = "http://www.usagain.com/";
+		} else if(organization === "Value Village") {
+			info = "Value Village, a Savers brand, is a for-profit, global thrift retailer offering great quality, gently used clothing, accessories and household goods. Our business model of purchasing, reselling and recycling gives communities a smart way to shop and keeps more than 650 million pounds of used goods from landfills each year. We also help more than 120 nonprofit organizations by paying them for donated goods, which supports their vital community programs and services. All in all, we operate over 330 locations and have 20,000 employees in Canada, the United States and Australia.";
+			website = "https://www.valuevillage.com/";
+		}
+
 		geocoder.geocode({ 'address': address }, function(results, status) {
 			if (status == google.maps.GeocoderStatus.OK) {
 				$scope.bins.$add({
@@ -23,9 +53,15 @@ angular.module('BinHubApp', ['firebase'])
 					x: (results[0].geometry.viewport.H.H + results[0].geometry.viewport.H.j) / 2,
 					y: (results[0].geometry.viewport.j.H + results[0].geometry.viewport.j.j) / 2,
 					address: $scope.newAddress,
+					info: info,
+					website: website,
 					likes: 0,
 					comment: "testComment"
 				});
+				var marker = new google.maps.Marker({
+            		map: map,
+            		position: results[0].geometry.location
+        		});
 			} else {
 				alert("Geocode was not successful for the following reason: " + status);
 			}
@@ -37,6 +73,8 @@ angular.module('BinHubApp', ['firebase'])
 	}
 }])
 
+var map;
+
 // Function that creates map asynchronously
 function initMap() {
 
@@ -44,7 +82,7 @@ function initMap() {
 	var ref = new Firebase("https://binhub.firebaseio.com");
 
 	// Defines map centered at UW
-	var map = new google.maps.Map(document.getElementById('map'), {
+	map = new google.maps.Map(document.getElementById('map'), {
 	     zoom: 15,
 	     center: {lat: 47.655601, lng: -122.308903},
 	     mapTypeId: google.maps.MapTypeId.ROADMAP
@@ -70,16 +108,12 @@ function initMap() {
 			locations.push([i, dataSnapshot.val().bins[i]]);
 		}
 
-		// console.log(locations);
-
 		for (i = 0; i < locations.length; i++) {
-
 			// Creates a new marker with latlng from DB
 		    marker = new google.maps.Marker({
 		         position: new google.maps.LatLng(locations[i][1].x, locations[i][1].y),
 		         map: map
 		    });
-
 			// Creates a description infobox for each marker
 		    google.maps.event.addListener(marker, 'click', (function(marker, i) {
 				var contentString = '<div id="content">'+
@@ -89,6 +123,8 @@ function initMap() {
 			        '<div id="bodyContent">'+
 				    '<p><b>Address: </b>' + locations[i][1].address +
 			        '<p><b>Accepts: </b>' + locations[i][1].type + '</p>'+
+					'<p><b>About: </b>' + locations[i][1].info + '</p>'+
+					'<p><b>Website: </b> <a href="' + locations[i][1].website + '">' + locations[i][1].website + '</a> </p>' +
 			        '</div>'+
 			        '</div>';
 		         return function() {
