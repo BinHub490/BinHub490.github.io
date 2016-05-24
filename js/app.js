@@ -94,12 +94,40 @@ function initMap() {
 	/* define reference to your firebase app */
 	var ref = new Firebase("https://binhub.firebaseio.com");
 
-	// Defines map centered at UW
-	map = new google.maps.Map(document.getElementById('map'), {
-	     zoom: 15,
-	     center: {lat: 47.655601, lng: -122.308903},
-	     mapTypeId: google.maps.MapTypeId.ROADMAP
-	});
+	var initialLocation;
+	var seattle = new google.maps.LatLng(47.60621, -122.332071);
+	var browserSupportFlag =  new Boolean();
+
+	var myOptions = {
+		zoom: 15,
+		mapTypeId: google.maps.MapTypeId.ROADMAP
+	};
+	map = new google.maps.Map(document.getElementById("map"), myOptions);
+
+	// Try W3C Geolocation (Preferred)
+	if(navigator.geolocation) {
+		browserSupportFlag = true;
+		navigator.geolocation.getCurrentPosition(function(position) {
+	  		initialLocation = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
+	  		map.setCenter(initialLocation);
+		}, function() {
+	  		handleNoGeolocation(browserSupportFlag);
+		});
+	} else { // Browser doesn't support Geolocation
+		browserSupportFlag = false;
+		handleNoGeolocation(browserSupportFlag);
+	}
+
+	function handleNoGeolocation(errorFlag) {
+		if (errorFlag == true) {
+			alert("Geolocation service failed.");
+			initialLocation = newyork;
+		} else {
+			alert("Your browser doesn't support geolocation. We've placed you in Seattle.");
+			initialLocation = seattle;
+		}
+		map.setCenter(initialLocation);
+	}
 
 	// Adds a new marker on click
 	// map.addListener('click', function(e) {
@@ -111,8 +139,8 @@ function initMap() {
 
 	// Async function, once firebase array is loaded, map is populated
 	ref.once('value', function(dataSnapshot) {
-		// console.log(dataSnapshot.val().chirps);
 
+		// console.log(dataSnapshot.val().chirps);
 		var locations = []
 		var marker, i;
 		var infowindow = new google.maps.InfoWindow;
@@ -180,15 +208,14 @@ window.onclick = function(event) {
     }
 }
 
+var checkList = document.getElementById('list1');
+checkList.getElementsByClassName('anchor')[0].onclick = function (evt) {
+    if (checkList.classList.contains('visible'))
+        checkList.classList.remove('visible');
+    else
+        checkList.classList.add('visible');
+}
 
-        var checkList = document.getElementById('list1');
-        checkList.getElementsByClassName('anchor')[0].onclick = function (evt) {
-            if (checkList.classList.contains('visible'))
-                checkList.classList.remove('visible');
-            else
-                checkList.classList.add('visible');
-        }
-
-        checkList.onblur = function(evt) {
-            checkList.classList.remove('visible');
-        }
+checkList.onblur = function(evt) {
+    checkList.classList.remove('visible');
+}

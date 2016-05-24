@@ -274,7 +274,7 @@
             <!-- Show everyone's tweets! -->
     		<!-- Use ng-repeat directive to repeat a div for each element in chirps -->
     		<!-- order by time (in reverse chronological order) -->
-    		<div class="tweet-box" ng-repeat="bin in bins">
+    		<div class="tweet-box" ng-repeat="bin in bins | orderBy : 'likes' : 'reverse'">
     			<div>
     				<!-- Use an expressions to show the handle and time of tweet -->
     				<!-- format the time as a 'medium' -->
