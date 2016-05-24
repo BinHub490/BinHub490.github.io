@@ -355,7 +355,7 @@ fieldset[disabled] .btn-default.active {
 }
 
 #filters {
-    height: 80px;
+    height: auto;
     padding-top: 65px;
 }
 
