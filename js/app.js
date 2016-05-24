@@ -69,7 +69,11 @@ angular.module('BinHubApp', ['firebase'])
 	}
 
 	$scope.like = function(bin) {
-		bin.likes = bin.likes + 1;
+		var thisBinRef = binsRef.child(bin.$id);
+		var likes = bin.likes;
+		thisBinRef.update({
+			"likes": likes + 1
+		});
 	}
 }])
 
