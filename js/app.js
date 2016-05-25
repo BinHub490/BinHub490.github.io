@@ -114,6 +114,7 @@ function initMap() {
 	  		handleNoGeolocation(browserSupportFlag);
 		});
 	} else { // Browser doesn't support Geolocation
+		map.setCenter(seattle);
 		browserSupportFlag = false;
 		handleNoGeolocation(browserSupportFlag);
 	}
