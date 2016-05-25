@@ -96,39 +96,40 @@ function initMap() {
 
 	var initialLocation;
 	var seattle = new google.maps.LatLng(47.60621, -122.332071);
+	var udistrict = new google.maps.LatLng(47.657497, -122.312679)
 	var browserSupportFlag = new Boolean();
 
 	var myOptions = {
 		zoom: 15,
+		center: udistrict,
 		mapTypeId: google.maps.MapTypeId.ROADMAP
 	};
 	map = new google.maps.Map(document.getElementById("map"), myOptions);
 
-	// Try W3C Geolocation (Preferred)
-	if(navigator.geolocation) {
-		browserSupportFlag = true;
-		navigator.geolocation.getCurrentPosition(function(position) {
-	  		initialLocation = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
-	  		map.setCenter(initialLocation);
-		}, function() {
-	  		handleNoGeolocation(browserSupportFlag);
-		});
-	} else { // Browser doesn't support Geolocation
-		map.setCenter(seattle);
-		browserSupportFlag = false;
-		handleNoGeolocation(browserSupportFlag);
-	}
-
-	function handleNoGeolocation(errorFlag) {
-		if (errorFlag == true) {
-			alert("Geolocation service failed.");
-			initialLocation = newyork;
-		} else {
-			alert("Your browser doesn't support geolocation. We've placed you in Seattle.");
-			initialLocation = seattle;
-		}
-		map.setCenter(initialLocation);
-	}
+	// // Try W3C Geolocation (Preferred)
+	// if(navigator.geolocation) {
+	// 	browserSupportFlag = true;
+	// 	navigator.geolocation.getCurrentPosition(function(position) {
+	//   		initialLocation = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
+	//   		map.setCenter(initialLocation);
+	// 	}, function() {
+	//   		handleNoGeolocation(browserSupportFlag);
+	// 	});
+	// } else { // Browser doesn't support Geolocation
+	// 	browserSupportFlag = false;
+	// 	handleNoGeolocation(browserSupportFlag);
+	// }
+	//
+	// function handleNoGeolocation(errorFlag) {
+	// 	if (errorFlag == true) {
+	// 		alert("Geolocation service failed.");
+	// 		initialLocation = newyork;
+	// 	} else {
+	// 		alert("Your browser doesn't support geolocation. We've placed you in Seattle.");
+	// 		initialLocation = seattle;
+	// 	}
+	// 	map.setCenter(initialLocation);
+	// }
 
 	// Adds a new marker on click
 	// map.addListener('click', function(e) {
