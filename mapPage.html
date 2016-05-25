@@ -56,8 +56,10 @@
             <div class="row">
                 <div class=" text-center">
 
-                    <div class="col-sm-2 col-md-2 col-lg-2 ">
-                        <input type="zipcode" class="form-control" id="zipcode" placeholder="Search By City or Zip Code">
+                    <div class="col-sm-2 col-md-2 col-lg-2">
+                        <form ng-submit="enterZip()">
+                            <input type="zipcode" class="form-control" ng-model="zip" id="zipcode" placeholder="Search By City or Zip Code">
+                        </form>
                     </div>
 
                     <div class=" col-sm-3 col-md-3 col-lg-2 ">
@@ -156,7 +158,7 @@
         <!-- Show everyone's tweets! -->
         <!-- Use ng-repeat directive to repeat a div for each element in chirps -->
         <!-- order by time (in reverse chronological order) -->
-        <div class="tweet-box" ng-repeat="bin in bins | orderBy : 'likes' : 'reverse'">
+        <div class="tweet-box" ng-repeat="bin in bins | orderBy : '-likes'">
             <div>
                 <!-- Use an expressions to show the handle and time of tweet -->
                 <!-- format the time as a 'medium' -->

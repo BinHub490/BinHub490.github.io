@@ -13,8 +13,8 @@ angular.module('BinHubApp', ['firebase'])
 	$scope.bins = $firebaseArray(binsRef);
 
 	$scope.addBin = function() {
-		var geocoder = new google.maps.Geocoder();
-		var address = $scope.newAddress;
+		var geocoder     = new google.maps.Geocoder();
+		var address      = $scope.newAddress;
 		var organization = $scope.newOrganization;
 		var website;
 		var info;
@@ -47,6 +47,7 @@ angular.module('BinHubApp', ['firebase'])
 
 		geocoder.geocode({ 'address': address }, function(results, status) {
 			if (status == google.maps.GeocoderStatus.OK) {
+				console.log(results[0]);
 				$scope.bins.$add({
 					organization: $scope.newOrganization,
 					type: $scope.newType,
@@ -84,6 +85,24 @@ angular.module('BinHubApp', ['firebase'])
 			"dislikes": dislike - 1
 		});
 	}
+
+	$scope.enterZip = function() {
+		var geocoder = new google.maps.Geocoder();
+		if($scope.zip) {
+			geocoder.geocode({ 'address': $scope.zip }, function(results, status) {
+				if (status == google.maps.GeocoderStatus.OK) {
+					var zipX = (results[0].geometry.viewport.H.H + results[0].geometry.viewport.H.j) / 2;
+					var zipY = (results[0].geometry.viewport.j.H + results[0].geometry.viewport.j.j) / 2;
+					map.setCenter({
+						lat: zipX,
+						lng: zipY
+					});
+				} else {
+					alert("Geocode was not successful for the following reason: " + status);
+				}
+			});
+		}
+	}
 }])
 
 var map;
@@ -92,18 +111,18 @@ var map;
 function initMap() {
 
 	/* define reference to your firebase app */
-	var ref = new Firebase("https://binhub.firebaseio.com");
-
-	var initialLocation;
-	var seattle = new google.maps.LatLng(47.60621, -122.332071);
-	var udistrict = new google.maps.LatLng(47.657497, -122.312679)
+	var ref                = new Firebase("https://binhub.firebaseio.com");
+	var seattle            = new google.maps.LatLng(47.60621, -122.332071);
+	var udistrict          = new google.maps.LatLng(47.657497, -122.312679);
 	var browserSupportFlag = new Boolean();
+	var initialLocation;
 
 	var myOptions = {
 		zoom: 15,
 		center: udistrict,
 		mapTypeId: google.maps.MapTypeId.ROADMAP
 	};
+
 	map = new google.maps.Map(document.getElementById("map"), myOptions);
 
 	// // Try W3C Geolocation (Preferred)
