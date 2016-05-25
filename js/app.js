@@ -96,7 +96,7 @@ function initMap() {
 
 	var initialLocation;
 	var seattle = new google.maps.LatLng(47.60621, -122.332071);
-	var browserSupportFlag =  new Boolean();
+	var browserSupportFlag = new Boolean();
 
 	var myOptions = {
 		zoom: 15,
@@ -105,7 +105,7 @@ function initMap() {
 	map = new google.maps.Map(document.getElementById("map"), myOptions);
 
 	// Try W3C Geolocation (Preferred)
-	if(navigator.geolocation) {
+	// if(navigator.geolocation) {
 		browserSupportFlag = true;
 		navigator.geolocation.getCurrentPosition(function(position) {
 	  		initialLocation = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
@@ -113,10 +113,10 @@ function initMap() {
 		}, function() {
 	  		handleNoGeolocation(browserSupportFlag);
 		});
-	} else { // Browser doesn't support Geolocation
-		browserSupportFlag = false;
-		handleNoGeolocation(browserSupportFlag);
-	}
+	// } else { // Browser doesn't support Geolocation
+	// 	browserSupportFlag = false;
+	// 	handleNoGeolocation(browserSupportFlag);
+	// }
 
 	function handleNoGeolocation(errorFlag) {
 		if (errorFlag == true) {
