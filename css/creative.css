@@ -471,12 +471,16 @@ body {
 }
 
 #box {
-    height: 80%;
+    height: 85%;
     overflow:auto;
 }
 
 #content {
     width: 500px;
+}
+
+#filters {
+    height: 15%;
 }
 
 .modal {
@@ -506,9 +510,6 @@ body {
     text-align: left;
     padding-left: 20px;
 }
-
-
-
 
 /* The Close Button */
 .close {
@@ -587,7 +588,7 @@ body {
 @media(min-width:768px) {
 
     #map {
-      height: 80%;
+      height: 85%;
     }
 
     .navbar-default {
