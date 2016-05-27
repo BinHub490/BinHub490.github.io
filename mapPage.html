@@ -62,29 +62,35 @@
                     </div>
 
                     <div class=" col-sm-3 col-md-3 col-lg-2 ">
-                        <div id="list1" class=" dropdown-check-list " tabindex="100">
-                            <span class="anchor">Donation Type</span>
-                            <ul class="items">
-                                <li><input type="checkbox" />Clothes </li>
-                                <li><input type="checkbox" />Food</li>
-                                <li><input type="checkbox" />Books </li>
-                                <li><input type="checkbox" />Electronics </li>
-                                <li><input type="checkbox" />Household Items </li>
-                            </ul>
-                        </div>
+                            <select class="form-control" id="list1" ng-model="filterOrg" ng-options="type.name for type in types">
+                                <option value="">Donation Type</option>
+                                <!-- <option disabled selected>Organization</option>
+                                <option>All</option>
+                                <option ng-submit=filterOrg()>Big Brothers Big Sisters</option>
+                                <option>Goodwill</option>
+                                <option>Northwest Center</option>
+                                <option>The Salvation Army</option>
+                                <option>SightConnection</option>
+                                <option>TexGreen Inc.</option>
+                                <option>USAgain</option>
+                                <option>Value Village</option> -->
+                            </select>
+
                     </div>
 
                     <div class="col-sm-2 col-md-2 col-lg-2 text-center">
-                        <select class="form-control" id="organization">
-                            <option>Organization</option>
-                            <option>Big Brothers Big Sisters</option>
+                        <select class="form-control" id="organization" ng-model="filterOrg" ng-options="org.name for org in orgs">
+                            <option value="">Choose organization</option>
+                            <!-- <option disabled selected>Organization</option>
+                            <option>All</option>
+                            <option ng-submit=filterOrg()>Big Brothers Big Sisters</option>
                             <option>Goodwill</option>
                             <option>Northwest Center</option>
                             <option>The Salvation Army</option>
                             <option>SightConnection</option>
                             <option>TexGreen Inc.</option>
                             <option>USAgain</option>
-                            <option>Value Village</option>
+                            <option>Value Village</option> -->
                         </select>
                     </div>
 

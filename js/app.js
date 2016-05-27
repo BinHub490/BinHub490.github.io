@@ -103,6 +103,30 @@ angular.module('BinHubApp', ['firebase'])
 			});
 		}
 	}
+
+	$scope.orgs = [
+      {name:'All'},
+      {name:'Big Brothers Big Sisters'},
+      {name:'Goodwill'},
+      {name:'Northwest Center'},
+      {name:'The Salvation Army'},
+	  {name:'Sight Connection'},
+	  {name:'TexGreen Inc.'},
+	  {name:'USAgain'},
+	  {name:'Value Village'}
+    ];
+
+	$scope.filterOrg = function(org) {
+		console.log(org.name);
+	}
+
+	$scope.types = [
+      {name:'Clothes'},
+      {name:'Food'},
+      {name:'Books'},
+      {name:'Electronics'},
+      {name:'Household items'}
+    ];
 }])
 
 var map;
