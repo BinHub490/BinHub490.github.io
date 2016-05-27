@@ -59,6 +59,10 @@ angular.module('BinHubApp', ['firebase'])
 					likes: 0,
 					dislikes: 0,
 					comment: "testComment"
+				}).then(function(){
+					$scope.newOrganization = '';
+					$scope.newType = '';
+					$scope.newAddress = '';
 				});
 				var marker = new google.maps.Marker({
             		map: map,
